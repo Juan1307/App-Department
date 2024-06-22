@@ -1,0 +1,31 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"files": {
+		"include": ["resources/js/**/*.ts", "resources/js/**/*.tsx"]
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"useImportType": "off",
+				"useTemplate": "warn",
+				"useSelfClosingElements": "warn",
+				"noUnusedTemplateLiteral": "warn"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off",
+				"useButtonType": "off",
+				"useKeyWithClickEvents": "warn",
+				"useKeyWithMouseEvents": "warn",
+                "useAltText":"warn"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "info"
+			}
+		}
+	}
+}

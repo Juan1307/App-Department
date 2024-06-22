@@ -1,10 +1,12 @@
-import { AxiosInstance } from 'axios';
-import { route as ziggyRoute } from 'ziggy-js';
+import type { AxiosInstance } from "axios";
+import type { route as ziggyRoute } from "ziggy-js";
 
 declare global {
-    interface Window {
-        axios: AxiosInstance;
-    }
+	interface Window {
+		axios: AxiosInstance;
+	}
 
-    var route: typeof ziggyRoute;
+    type Unpacked<T> = T extends (infer U)[] ? U : T;
+
+	var route: typeof ziggyRoute;
 }

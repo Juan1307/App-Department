@@ -1,9 +1,9 @@
 import Application from "@/Layouts/Application";
 
-export default function Dashboard() {
+export default function Notifications() {
 	return (
 		<Application>
-			<div>ON: Dashboard</div>
+			<div>ON: Notifications</div>
 		</Application>
 	);
 }

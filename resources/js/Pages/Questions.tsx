@@ -1,9 +1,9 @@
 import Application from "@/Layouts/Application";
 
-export default function Dashboard() {
+export default function Questions() {
 	return (
 		<Application>
-			<div>ON: Dashboard</div>
+			<div>ON: Questions</div>
 		</Application>
 	);
 }
