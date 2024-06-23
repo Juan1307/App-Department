@@ -34,7 +34,11 @@ Ejecutar los siguiente comandos de laravel para el proyecto:
 5. Ejecutar: ```php artisan db:seed``` // Para ejecutar las ***factories***.
 6. Ejecutar: ```php artisan serve``` // para servir LARAVEL.
 
-Abrir una pestaña en el puerto de ***Laravel*** para visualizar la App.
+Abrir una pestaña en el puerto de ***Laravel*** generalmente es ***8000*** para visualizar la App y ver la prueba en la sección.
+
+```
+http://127.0.0.1:8000/organizacion
+```
 
 ### Notas
 
