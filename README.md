@@ -27,12 +27,12 @@ git clone https://github.com/Juan1307/App-Department.git departments
 
 Ejecutar los siguiente comandos de laravel para el proyecto:
 
-1.- Ejecutar: ```composer install``` // para las dependecias de Laravel.
-2.- Ejecutar: ```npm install``` // para las dependencias de Inertia, ReactJS y VITE.
-3.- Ejecutar: ```npm run dev``` // Para servir ReactJS.
-4.- Ejecutar: ```php artisan migrate``` // Para la base de datos ***mysql***.
-5.- Ejecutar: ```php artisan db:seed``` // Para ejecutar las ***factories***.
-6.- Ejecutar: ```php artisan serve``` // para servir LARAVEL.
+1. Ejecutar: ```composer install``` // para las dependecias de Laravel.
+2. Ejecutar: ```npm install``` // para las dependencias de Inertia, ReactJS y VITE.
+3. Ejecutar: ```npm run dev``` // Para servir ReactJS.
+4. Ejecutar: ```php artisan migrate``` // Para la base de datos ***mysql***.
+5. Ejecutar: ```php artisan db:seed``` // Para ejecutar las ***factories***.
+6. Ejecutar: ```php artisan serve``` // para servir LARAVEL.
 
 Abrir una pestaña en el puerto de ***Laravel*** para visualizar la App.
 
