@@ -1,9 +1,12 @@
 import Application from "@/Layouts/Application";
+import Wrapped from "@/Layouts/Wrapped";
 
 export default function Questions() {
 	return (
 		<Application>
-			<div>ON: Questions</div>
+            <Wrapped>
+			    <div>Questions</div>
+            </Wrapped>
 		</Application>
 	);
 }

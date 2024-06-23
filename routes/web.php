@@ -12,7 +12,8 @@ Route::prefix('/organizacion')->group(function () {
         Route::get('/',  'index');
         Route::post('/create',  'create');
         Route::put('/update',  'update');
-        Route::delete('/delete',  'delete');
+        Route::delete('/delete/{id}',  'delete')->where('id', '[0-9]+');
+        Route::post('/delete-multiple',  'deleteMultiple');
     });
 });
 

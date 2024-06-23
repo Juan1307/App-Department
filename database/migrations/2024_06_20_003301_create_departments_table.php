@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->unsignedBigInteger('up_department_id');
+            $table->unsignedBigInteger('up_department_id')->nullable();
             $table->string('name')->unique();
             $table->string('embassador');
             $table->integer('level');

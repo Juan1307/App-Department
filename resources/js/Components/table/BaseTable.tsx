@@ -23,12 +23,6 @@ interface ITableSorter {
 export default function BaseTable<T>(props: PropsBaseTable<T>) {
 	const { data, columns, pagination, partialReloadKeys } = props;
 	const tableRef = useRef(null);
-	const [selectedKeys, setSelectedKeys] = useState<React.Key[]>(
-		() => props.selectedKeys ?? [],
-	);
-	const [paginationState, setPaginationState] = useState("");
-	const [ordenationState, setOrdenationState] = useState("");
-
 	const { meta } = pagination;
 
 	/**
@@ -40,9 +34,6 @@ export default function BaseTable<T>(props: PropsBaseTable<T>) {
 		selectedRows: never[],
 		info: unknown,
 	) => {
-		console.log(newSelectedRowKeys);
-
-		setSelectedKeys(newSelectedRowKeys);
 		if (props.onSelectedKeys) {
 			props.onSelectedKeys(newSelectedRowKeys);
 		}
@@ -54,7 +45,15 @@ export default function BaseTable<T>(props: PropsBaseTable<T>) {
 	 * @param size
 	 */
 	const onShowSizeChange = (current: number, size: number) => {
-		setPaginationState(`page=${current}&per_page=${size}`);
+		const _paginationState = `page=${current}&per_page=${size}`;
+		router.get(
+			`/organizacion`,
+			{ page: current, per_page: size },
+			{
+				only: partialReloadKeys,
+				preserveState: true,
+			},
+		);
 	};
 
 	/**
@@ -63,7 +62,18 @@ export default function BaseTable<T>(props: PropsBaseTable<T>) {
 	 * @param pageSize
 	 */
 	const onPaginateSelect = (page: number, pageSize: number) => {
-		setPaginationState(`page=${page}&per_page=${pageSize}`);
+		const _paginationState = `page=${page}&per_page=${pageSize}`;
+		router.get(
+			`/organizacion`,
+			{ page: page, per_page: pageSize },
+			{
+				only: partialReloadKeys,
+				preserveState: true,
+			},
+		);
+		// router.visit(`/organizacion?${_paginationState}`, {
+		// 	only: partialReloadKeys,
+		// });
 	};
 
 	/**
@@ -72,39 +82,23 @@ export default function BaseTable<T>(props: PropsBaseTable<T>) {
 	const onSorterColumn = (pagination: unknown, sorter: ITableSorter) => {
 		if (sorter.field) {
 			const { field, order } = sorter;
-			const currentOrder = order === "ascend" ? "ASC" : "DESC";
-			setOrdenationState(() => `sort=${currentOrder}&sort_column=${field}`);
+			const currentOrder =
+				order === "ascend" ? "ASC" : order === "descend" ? "DESC" : undefined;
+
+			if (currentOrder) {
+				const _ordenationState = `page=${meta.current_page}&per_page=${meta.per_page}&sort=${currentOrder}&sort_column=${field}`;
+				router.visit(`/organizacion?${_ordenationState}`, {
+					only: partialReloadKeys,
+				});
+			}
 		}
 	};
-
-	useEffect(() => {
-		if (props.selectedKeys) {
-			setSelectedKeys(props.selectedKeys);
-		}
-	}, [props.selectedKeys]);
-
-	useEffect(() => {
-
-		if (ordenationState.length) {
-			console.log("on ordenated", ordenationState);
-		}
-        
-		if (paginationState.length) {
-            console.log("on paginated", ordenationState);
-			// router.visit(
-			// 	`/organizacion?${}`,
-			// 	{
-			// 		only: partialReloadKeys,
-			// 	},
-			// );
-		}
-	}, [ordenationState, paginationState]);
 
 	return (
 		<Table
 			ref={tableRef}
 			rowSelection={{
-				selectedRowKeys: selectedKeys,
+				selectedRowKeys: props.selectedKeys,
 				onChange: onSelectChange,
 			}}
 			dataSource={data as []}
